@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StudyHub — مركز الدراسة</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+<meta name="theme-color" content="#0e7490" />
+<!--
+  🌗 الثيم بيتقرر قبل أي رسم (عشان مفيش "فلاش" لون غلط):
+  1) لو اخترت لون بزرار التبديل ⬅️ هو اللي بيتطبق دايمًا.
+  2) لو ماخترتش ⬅️ بنتبع إعداد جهازك (داكن/فاتح) تلقائيًا،
+     ولو غيّرت إعداد الجهاز والموقع مفتوح بنتحوّل معاك لحظيًا.
+-->
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('studyhub_theme_v1'); // 'dark' | 'light' | null(تلقائي)
+    var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var dark = t === 'dark' || (t !== 'light' && !!sysDark);
+    if (dark) document.documentElement.classList.add('dark');
+  } catch (e) {}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+<!-- Font Awesome مثبّتة بإصدار + بصمة SRI (أمان أعلى: المكتبة لو اتبدلت على الـ CDN المتصفح هيرفضها) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha384-nRgPTkuX86pH8yjPJUAFuASXQSSl2/bBUiNV47vSYpKFxHJhbcrGnmlYpYJMeD7a"
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Tailwind مثبّتة بإصدار ثابت (مش "آخر نسخة" عشان الشكل ما يتغيرش لوحده مع الوقت) -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+<style type="text/tailwindcss">
+@custom-variant dark (&:where(.dark, .dark *));
+</style>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<!-- كل الصفحة بتترسم من js/app.js جوه root (نفس نمط باقي مواقعك) -->
+<div id="root" class="min-h-screen flex flex-col bg-slate-100 dark:bg-[#070b14] text-slate-800 dark:text-slate-200 transition-colors duration-300"></div>
+<div id="modal-root"></div>
+<div id="toasts" class="fixed bottom-4 inset-x-0 z-[9999] flex flex-col items-center gap-2 pointer-events-none px-4"></div>
+<!-- مداخل ملفات مخفية: استيراد مصدر / استرجاع نسخة احتياطية -->
+<input type="file" id="file-import-source" accept="application/json,.json" class="hidden" />
+<input type="file" id="file-import-backup" accept="application/json,.json" class="hidden" />
+<script src="js/app.js"></script>
+</body>
+</html>

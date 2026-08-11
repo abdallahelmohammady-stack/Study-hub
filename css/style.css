@@ -1,0 +1,58 @@
+/* ================================================================
+   StudyHub — ستايلات مخصوصة (فوق Tailwind)
+   فيه هنا بس الحاجات اللي Tailwind مش بتعملها: خط الموقع، الحلقات،
+   التوست، السحب والإفلات، التوقيع… إلخ.
+   ================================================================ */
+
+:root { --ring-track: rgba(148, 163, 184, .22); }
+body { font-family: 'Cairo', system-ui, sans-serif; }
+.font-mono-num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+
+/* ---------- حلقة التقدم ---------- */
+.sh-ring { transform: rotate(-90deg); }
+.sh-ring circle { fill: none; stroke-linecap: round; }
+.sh-ring .track { stroke: var(--ring-track); }
+
+/* ---------- شريط تقدم ---------- */
+.sh-bar { height: 8px; border-radius: 999px; background: var(--ring-track); overflow: hidden; }
+.sh-bar > i { display: block; height: 100%; border-radius: 999px; transition: width .5s ease; }
+
+/* ---------- التوست ---------- */
+.sh-toast {
+  pointer-events: auto; display: flex; align-items: center; gap: 10px;
+  background: #0f172a; color: #f1f5f9; border: 1px solid rgba(148, 163, 184, .25);
+  padding: 10px 16px; border-radius: 14px; font-size: 13px; font-weight: 700;
+  box-shadow: 0 12px 30px -12px rgba(0, 0, 0, .5); max-width: 92vw;
+  animation: sh-toast-in .25s ease;
+}
+.sh-toast.err { border-color: rgba(244, 63, 94, .5); }
+@keyframes sh-toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ---------- ظهور ناعم للكروت ---------- */
+.sh-in { animation: sh-in .35s ease backwards; animation-delay: calc(var(--i, 0) * 45ms); }
+@keyframes sh-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ---------- سطور المهام + السحب ---------- */
+.sh-row { touch-action: pan-y; }
+.sh-grip { touch-action: none; cursor: grab; }
+.sh-grip:active { cursor: grabbing; }
+.sh-row.dragging { opacity: .35; }
+.sh-drop-line { height: 3px; border-radius: 999px; background: linear-gradient(90deg, #0891b2, #6366f1); margin: 4px 8px; }
+
+/* ---------- مجموعات المصادر (details) ---------- */
+details.sh-group > summary { list-style: none; cursor: pointer; }
+details.sh-group > summary::-webkit-details-marker { display: none; }
+details.sh-group[open] .sh-caret { transform: rotate(180deg); }
+.sh-caret { transition: transform .2s; }
+
+/* ---------- توقيع المالك (نفس فكرة باقي المواقع) ---------- */
+.sh-signature { font-family: 'Caveat', cursive; font-weight: 600; font-size: 1.45rem; color: #0891b2; }
+.dark .sh-signature { color: #22d3ee; }
+
+/* ---------- سكرول بار رفيع لسطور المهام الطويلة ---------- */
+.sh-scroll::-webkit-scrollbar { width: 6px; }
+.sh-scroll::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, .35); border-radius: 999px; }
+
+/* ---------- نبض خفيف لنقطة "مباشر" ---------- */
+.sh-pulse { animation: sh-pulse 1.6s ease-in-out infinite; }
+@keyframes sh-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
