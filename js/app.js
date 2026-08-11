@@ -444,18 +444,18 @@ function openTaskModal(id) {
     '<span class="inline-flex items-center gap-1.5 h-9 px-3 rounded-xl border text-xs font-bold transition border-slate-200 dark:border-slate-700 peer-checked:text-white peer-checked:border-transparent" data-prio-chip="' + p.hex + '"><i class="fa fa-flag"></i> ' + p.name + '</span></label>').join('');
   $('modal-root').innerHTML =
   '<div class="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-950/60 backdrop-blur-sm" onclick="if(event.target===this)closeModal()">' +
-    '<div class="w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-5 sh-in" role="dialog" aria-modal="true">' +
+    '<div class="w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl bg-white dark:bg-slate-900 dark:text-slate-200 border border-slate-200 dark:border-slate-800 shadow-2xl p-5 sh-in" role="dialog" aria-modal="true">' +
       '<div class="flex items-center justify-between mb-4">' +
         '<h3 class="font-black text-base">' + (t ? 'تعديل المهمة' : 'مهمة جديدة ✍️') + '</h3>' +
         '<button onclick="closeModal()" class="w-8 h-8 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fa fa-xmark"></i></button>' +
       '</div>' +
       '<form onsubmit="saveTaskModal(event)">' +
-        '<input id="f-title" type="text" required maxlength="200" placeholder="عنوان المهمة — مثلًا: خلّص شابتر 3 إشارات" value="' + esc(t ? t.title : '') + '" class="w-full h-11 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 text-sm font-bold focus:outline-none focus:ring-2 ring-cyan-500/60 mb-3" />' +
-        '<textarea id="f-note" rows="2" maxlength="600" placeholder="ملاحظات (اختياري) — تفاصيل، لينك، صفحات…" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 text-xs focus:outline-none focus:ring-2 ring-cyan-500/60 mb-3 resize-none">' + esc(t ? t.note : '') + '</textarea>' +
+        '<input id="f-title" type="text" required maxlength="200" placeholder="عنوان المهمة — مثلًا: خلّص شابتر 3 إشارات" value="' + esc(t ? t.title : '') + '" class="w-full h-11 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 dark:text-slate-100 dark:placeholder:text-slate-500 text-sm font-bold focus:outline-none focus:ring-2 ring-cyan-500/60 mb-3" />' +
+        '<textarea id="f-note" rows="2" maxlength="600" placeholder="ملاحظات (اختياري) — تفاصيل، لينك، صفحات…" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 dark:text-slate-100 dark:placeholder:text-slate-500 text-xs focus:outline-none focus:ring-2 ring-cyan-500/60 mb-3 resize-none">' + esc(t ? t.note : '') + '</textarea>' +
         '<p class="text-[11px] font-bold text-slate-400 mb-1.5">التصنيف</p><div class="flex flex-wrap gap-2 mb-3" id="cat-chips">' + catChips + '</div>' +
         '<p class="text-[11px] font-bold text-slate-400 mb-1.5">الأولوية</p><div class="flex flex-wrap gap-2 mb-3" id="prio-chips">' + prioChips + '</div>' +
         '<p class="text-[11px] font-bold text-slate-400 mb-1.5">تاريخ التسليم (اختياري)</p>' +
-        '<input id="f-due" type="date" value="' + esc(t ? t.due : '') + '" class="w-full h-11 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 text-sm focus:outline-none focus:ring-2 ring-cyan-500/60 mb-4" />' +
+        '<input id="f-due" type="date" value="' + esc(t ? t.due : '') + '" class="w-full h-11 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 dark:text-slate-100 dark:placeholder:text-slate-500 text-sm focus:outline-none focus:ring-2 ring-cyan-500/60 mb-4" />' +
         '<div class="flex gap-2">' +
           '<button type="submit" class="flex-1 h-11 rounded-xl text-sm font-black text-white shadow-lg shadow-cyan-500/25 hover:brightness-110 transition" style="background:linear-gradient(135deg,#06b6d4,#6366f1)">' + (t ? 'حفظ التعديلات' : 'إضافة المهمة') + '</button>' +
           '<button type="button" onclick="closeModal()" class="h-11 px-5 rounded-xl text-sm font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition">إلغاء</button>' +
@@ -624,12 +624,12 @@ function openLinkModal(key) {
   const def = SOURCES_DEF.find(s => s.key === key);
   $('modal-root').innerHTML =
   '<div class="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-950/60 backdrop-blur-sm" onclick="if(event.target===this)closeModal()">' +
-    '<div class="w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-5 sh-in">' +
+    '<div class="w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl bg-white dark:bg-slate-900 dark:text-slate-200 border border-slate-200 dark:border-slate-800 shadow-2xl p-5 sh-in">' +
       '<div class="flex items-center justify-between mb-3"><h3 class="font-black text-base">لينك «' + esc(def.title) + '»</h3>' +
       '<button onclick="closeModal()" class="w-8 h-8 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fa fa-xmark"></i></button></div>' +
       '<p class="text-xs text-slate-400 mb-3 leading-relaxed">حط لينك نسخة الزوّار بتاعة الموقع (بتخلص من Vercel) — بيتحفظ على جهازك بس، وزرار «افتح الموقع» هيفتّحهولك على طول.</p>' +
       '<form onsubmit="saveLink(event, \'' + key + '\')">' +
-        '<input id="f-link" dir="ltr" type="url" placeholder="https://example.vercel.app/user/" value="' + esc(links[key] || '') + '" class="w-full h-11 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 text-sm focus:outline-none focus:ring-2 ring-cyan-500/60 mb-4" />' +
+        '<input id="f-link" dir="ltr" type="url" placeholder="https://example.vercel.app/user/" value="' + esc(links[key] || '') + '" class="w-full h-11 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 dark:text-slate-100 dark:placeholder:text-slate-500 text-sm focus:outline-none focus:ring-2 ring-cyan-500/60 mb-4" />' +
         '<div class="flex gap-2"><button type="submit" class="flex-1 h-11 rounded-xl text-sm font-black text-white hover:brightness-110 transition" style="background:linear-gradient(135deg,' + def.hex + ',#6366f1)">حفظ اللينك</button>' +
         '<button type="button" onclick="closeModal()" class="h-11 px-5 rounded-xl text-sm font-bold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition">إلغاء</button></div>' +
       '</form>' +

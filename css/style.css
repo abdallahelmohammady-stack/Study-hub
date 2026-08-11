@@ -56,3 +56,6 @@ details.sh-group[open] .sh-caret { transform: rotate(180deg); }
 /* ---------- نبض خفيف لنقطة "مباشر" ---------- */
 .sh-pulse { animation: sh-pulse 1.6s ease-in-out infinite; }
 @keyframes sh-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+/* ---------- حقول التاريخ في الدارك: أيقونات الـ picker الأصيلة تبقى فاتحة ---------- */
+.dark input[type="date"] { color-scheme: dark; }
